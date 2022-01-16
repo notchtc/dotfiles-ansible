@@ -1,0 +1,4 @@
+This is highly personal:
+- it only targets Fedora (specifically a fresh minimal install made with the Everything installer)
+- the package list contains stuff I use
+- pulls in my dotfiles and symlinks them

@@ -1,0 +1,17 @@
+---
+- hosts: local
+  gather_facts: no
+  roles:
+    - role: setup
+      become: yes
+      tags:
+        - setup
+    - role: dotfiles
+      tags:
+        - dotfiles
+    - role: fonts
+      tags:
+        - fonts
+    - role: post
+      tags:
+        - post

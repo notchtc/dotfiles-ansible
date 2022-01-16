@@ -1,0 +1,30 @@
+---
+- name: Create .local/share/fonts
+  file:
+    path: "{{ user_home }}/.local/share/fonts"
+    state: directory
+    recurse: yes
+
+- name: Check if Iosevka exists
+  stat:
+    path: "{{ user_home }}/.local/share/fonts/iosevka.ttc"
+  register: iosevka
+
+- name: Check if Iosevka Aile exists
+  stat:
+    path: "{{ user_home }}/.local/share/fonts/iosevka-aile.ttc"
+  register: iosevka_aile
+
+- name: Install Iosevka
+  unarchive:
+    src: "https://github.com/be5invis/Iosevka/releases/download/v11.2.6/super-ttc-iosevka-11.2.6.zip"
+    dest: "{{ user_home }}/.local/share/fonts"
+    remote_src: yes
+  when: not iosevka.stat.exists
+
+- name: Install Iosevka Aile
+  unarchive:
+    src: "https://github.com/be5invis/Iosevka/releases/download/v11.2.6/super-ttc-iosevka-aile-11.2.6.zip"
+    dest: "{{ user_home }}/.local/share/fonts"
+    remote_src: yes
+  when: not iosevka_aile.stat.exists

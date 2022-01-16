@@ -1,0 +1,5 @@
+---
+- name: Graphical Target Notice
+  debug:
+    msg: "PLEASE REBOOT YOUR SYSTEM"
+  when: hostvars['localhost']['graphical'].changed

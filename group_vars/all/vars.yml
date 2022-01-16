@@ -1,0 +1,46 @@
+user_home: "{{ '~' | expanduser }}"
+dotfiles_home: "{{ user_home }}/.dotfiles"
+
+fedora_version: 35
+
+packages:
+  - gnome-shell
+  - gnome-software
+  - gnome-tweaks
+  - gnome-extensions-app
+  - nautilus
+  - xdg-user-dirs
+  - xdg-user-dirs-gtk
+  - "@development-tools"
+  - stow
+  - bleachbit
+  - exa
+  - ffmpeg
+  - foot
+  - fzf
+  - gimp
+  - htop
+  - hugo
+  - imv
+  - keepassxc
+  - legendary
+  - lutris
+  - mpv
+  - neovim
+  - "nicotine+"
+  - p7zip
+  - picard
+  - qbittorrent
+  - rhythmbox
+  - ruby-devel
+  - rubygem-asciidoctor
+  - rubygem-asciidoctor-pdf
+  - steam
+  - telegram-desktop
+  - trash-cli
+  - wine
+  - xonotic
+  - youtube-dl
+  - zathura
+  - zathura-pdf-poppler
+  - zsh
