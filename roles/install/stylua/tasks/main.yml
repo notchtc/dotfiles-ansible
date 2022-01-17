@@ -1,0 +1,24 @@
+---
+- name: Create .local/bin
+  file:
+    path: "{{ user_home }}/.local/bin"
+    state: directory
+    recurse: yes
+
+- name: Check if StyLua is installed
+  stat:
+    path: "{{ user_home }}/.local/bin/stylua"
+  register: stylua
+
+- name: Install StyLua
+  unarchive:
+    src: "https://github.com/JohnnyMorganz/StyLua/releases/download/v{{ stylua_version }}/stylua-{{ stylua_version }}-linux.zip"
+    dest: "{{ user_home }}/.local/bin"
+    remote_src: yes
+  when: not stylua.stat.exists
+
+- name: Make StyLua executable
+  file:
+    path: "{{ user_home }}/.local/bin/stylua"
+    mode: +x
+    state: file

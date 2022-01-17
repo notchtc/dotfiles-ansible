@@ -1,4 +1,2 @@
-This is highly personal:
-- it only targets Fedora (specifically a fresh minimal install made with the Everything installer)
-- the package list contains stuff I use
-- pulls in my dotfiles and symlinks them
+This is my personal Ansible playbook made for a fresh Fedora minimal install.
+It contains some variables that you can change, but I recommend changing this to your liking anyways (if for some reason you want to use this).

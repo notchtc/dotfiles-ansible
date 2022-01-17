@@ -17,14 +17,14 @@
 
 - name: Install Iosevka
   unarchive:
-    src: "https://github.com/be5invis/Iosevka/releases/download/v11.2.6/super-ttc-iosevka-11.2.6.zip"
+    src: "https://github.com/be5invis/Iosevka/releases/download/v{{ iosevka_version }}/super-ttc-iosevka-{{ iosevka_version }}.zip"
     dest: "{{ user_home }}/.local/share/fonts"
     remote_src: yes
   when: not iosevka.stat.exists
 
 - name: Install Iosevka Aile
   unarchive:
-    src: "https://github.com/be5invis/Iosevka/releases/download/v11.2.6/super-ttc-iosevka-aile-11.2.6.zip"
+    src: "https://github.com/be5invis/Iosevka/releases/download/v{{ iosevka_version }}/super-ttc-iosevka-aile-{{ iosevka_version }}.zip"
     dest: "{{ user_home }}/.local/share/fonts"
     remote_src: yes
   when: not iosevka_aile.stat.exists

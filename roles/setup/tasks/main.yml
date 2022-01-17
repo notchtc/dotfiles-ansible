@@ -1,34 +1,45 @@
 ---
-- name: Add RPM Fusion free key
-  rpm_key:
-    state: present
-    key: "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-2020"
+- name: RPM Fusion
+  when:
+    - ansible_facts['distribution'] == 'Fedora'
+    - enable_rpm_fusion
+  block:
+    - name: Add RPM Fusion free key
+      rpm_key:
+        state: present
+        key: "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-2020"
 
-- name: Add RPM Fusion nonfree key
-  rpm_key:
-    state: present
-    key: "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020"
+    - name: Add RPM Fusion nonfree key
+      rpm_key:
+        state: present
+        key: "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020"
 
-- name: Add RPM fusion repositories
-  dnf:
-    name:
-      - "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ fedora_version }}.noarch.rpm"
-      - "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ fedora_version }}.noarch.rpm"
+    - name: Add RPM fusion repositories
+      dnf:
+        name:
+          - "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ fedora_version }}.noarch.rpm"
+          - "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ fedora_version }}.noarch.rpm"
 
 - name: Upgrade all packages
   dnf:
     name: "*"
     state: latest
 
-- name: Install packages
+- name: Install packages related with the rice
   package:
     name: "{{ packages }}"
     state: present
 
+- name: Install personal packages
+  package:
+    name: "{{ personal_packages }}"
+    state: present
+  when: install_personal
+
 - name: Set shell
   user:
     name: "{{ lookup('env', 'USER') }}"
-    shell: "/usr/bin/zsh"
+    shell: "/usr/bin/{{ shell }}"
 
 - name: Set graphical target
   file:

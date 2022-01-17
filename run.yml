@@ -1,17 +1,25 @@
 ---
 - hosts: local
-  gather_facts: no
   roles:
     - role: setup
       become: yes
       tags:
         - setup
-    - role: dotfiles
+
+    - role: install/dotfiles
       tags:
         - dotfiles
-    - role: fonts
+
+    - role: install/iosevka
       tags:
-        - fonts
+        - iosevka
+      when: install_iosevka
+
+    - role: install/stylua
+      tags:
+        - stylua
+      when: install_stylua
+
     - role: post
       tags:
         - post

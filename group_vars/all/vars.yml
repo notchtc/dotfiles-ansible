@@ -2,6 +2,18 @@ user_home: "{{ '~' | expanduser }}"
 dotfiles_home: "{{ user_home }}/.dotfiles"
 
 fedora_version: 35
+iosevka_version: 11.2.6
+stylua_version: 0.11.3
+
+enable_rpm_fusion: yes
+
+dotfiles: "https://github.com/notchtc/dotfiles"
+
+install_personal: yes
+install_iosevka: yes
+install_stylua: yes
+
+shell: zsh
 
 packages:
   - gnome-shell
@@ -13,34 +25,36 @@ packages:
   - xdg-user-dirs-gtk
   - "@development-tools"
   - stow
-  - bleachbit
   - exa
-  - ffmpeg
   - foot
   - fzf
+  - imv
+  - mpv
+  - neovim
+  - rhythmbox
+  - trash-cli
+  - zathura
+  - zathura-pdf-poppler
+  - "{{ shell }}"
+
+personal_packages:
+  - bleachbit
+  - ffmpeg
   - gimp
   - htop
   - hugo
-  - imv
   - keepassxc
   - legendary
   - lutris
-  - mpv
-  - neovim
   - "nicotine+"
   - p7zip
   - picard
   - qbittorrent
-  - rhythmbox
   - ruby-devel
   - rubygem-asciidoctor
   - rubygem-asciidoctor-pdf
   - steam
   - telegram-desktop
-  - trash-cli
   - wine
   - xonotic
   - youtube-dl
-  - zathura
-  - zathura-pdf-poppler
-  - zsh
