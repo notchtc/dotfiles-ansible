@@ -1,0 +1,17 @@
+---
+- name: Create .config/gem
+  file:
+    path: "{{ user_home }}/.config/gem"
+    state: directory
+    recurse: yes
+
+- name: Create .local/share/gem
+  file:
+    path: "{{ user_home }}/.local/share/gem"
+    state: directory
+    recurse: yes
+
+- name: Create gem config
+  template:
+    src: "gem.j2"
+    dest: "{{ user_home }}/.config/gem/gemrc"

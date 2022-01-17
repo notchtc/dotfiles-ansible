@@ -1,5 +1,7 @@
-user_home: "{{ '~' | expanduser }}"
+user_home: "{{ lookup('env','HOME') }}"
 dotfiles_home: "{{ user_home }}/.dotfiles"
+
+enable_rpm_fusion: yes
 
 # basically https://rpmfusion.org/Configuration and https://rpmfusion.org/keys
 redhat_os: fedora
@@ -9,13 +11,17 @@ fusion_key: 2020
 iosevka_version: 11.2.6
 stylua_version: 0.11.3
 
-enable_rpm_fusion: yes
+install_personal: yes
+install_git_config: yes
+install_gemrc: yes
+install_iosevka: yes
+install_stylua: yes
 
 dotfiles: "https://github.com/notchtc/dotfiles"
 
-install_personal: yes
-install_iosevka: yes
-install_stylua: yes
+git_email: "notnotcha0t1c@protonmail.com"
+git_name: chtc
+git_key: D65CE53E87101757
 
 shell: zsh
 
@@ -27,7 +33,7 @@ packages:
   - nautilus
   - xdg-user-dirs
   - xdg-user-dirs-gtk
-  - "@development-tools"
+  - git
   - stow
   - exa
   - foot

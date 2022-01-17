@@ -10,6 +10,16 @@
       tags:
         - dotfiles
 
+    - role: install/git
+      tags:
+        - gitconfig
+      when: install_git_config
+
+    - role: install/gem
+      tags:
+        - gemrc
+      when: install_gemrc
+
     - role: install/iosevka
       tags:
         - iosevka

@@ -1,0 +1,11 @@
+---
+- name: Create .config/git
+  file:
+    path: "{{ user_home }}/.config/git"
+    state: directory
+    recurse: yes
+
+- name: Create git config
+  template:
+    src: "git.j2"
+    dest: "{{ user_home }}/.config/git/config"
