@@ -1,24 +1,24 @@
 ---
 - name: RPM Fusion
   when:
-    - ansible_facts['distribution'] == 'Fedora'
+    - ansible_os_family == 'RedHat'
     - enable_rpm_fusion
   block:
     - name: Add RPM Fusion free key
       rpm_key:
         state: present
-        key: "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-2020"
+        key: "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-{{ redhat_os }}-{{ fusion_key }}"
 
     - name: Add RPM Fusion nonfree key
       rpm_key:
         state: present
-        key: "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020"
+        key: "https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-{{ redhat_os }}-{{ fusion_key }}"
 
     - name: Add RPM fusion repositories
       dnf:
         name:
-          - "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ fedora_version }}.noarch.rpm"
-          - "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ fedora_version }}.noarch.rpm"
+          - "https://mirrors.rpmfusion.org/free/{{ redhat_os }}/rpmfusion-free-release-{{ redhat_version }}.noarch.rpm"
+          - "https://mirrors.rpmfusion.org/nonfree/{{ redhat_os }}/rpmfusion-nonfree-release-{{ redhat_version }}.noarch.rpm"
 
 - name: Upgrade all packages
   dnf:
@@ -47,3 +47,4 @@
     dest: /etc/systemd/system/default.target
     state: link
   register: graphical
+  when: ansible_service_mgr == 'systemd'

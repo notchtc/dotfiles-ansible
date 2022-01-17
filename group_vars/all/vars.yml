@@ -1,7 +1,11 @@
 user_home: "{{ '~' | expanduser }}"
 dotfiles_home: "{{ user_home }}/.dotfiles"
 
-fedora_version: 35
+# basically https://rpmfusion.org/Configuration and https://rpmfusion.org/keys
+redhat_os: fedora
+redhat_version: 35
+fusion_key: 2020
+
 iosevka_version: 11.2.6
 stylua_version: 0.11.3
 
