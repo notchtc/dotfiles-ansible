@@ -1,5 +1,4 @@
 ---
-- name: Graphical Target Notice
+- name: Setup finished
   debug:
-    msg: "PLEASE REBOOT YOUR SYSTEM"
-  when: hostvars['localhost']['graphical'].changed
+    msg: "PLEASE REBOOT YOUR SYSTEM AND ENJOY YOUR SYSTEM :)"

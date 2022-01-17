@@ -46,5 +46,4 @@
     src: /usr/lib/systemd/system/graphical.target
     dest: /etc/systemd/system/default.target
     state: link
-  register: graphical
   when: ansible_service_mgr == 'systemd'
